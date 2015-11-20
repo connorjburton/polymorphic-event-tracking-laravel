@@ -53,5 +53,23 @@ request
 Will return
 
 ```
-  [{eventable_id: 23 ...], [eventable_id: 52 ...]}
+[{eventable_id: 23 ...], [eventable_id: 52 ...]}
+```
+
+###Config
+
+**Add event types**
+
+```
+/database/seeds/EventTypesSeeder.php
+
+class EventTypesSeeder extends Seeder
+{
+    // Seed for command types
+    private $command_types = array(
+        'view',
+        'time_seen',
+        'completed'
+    );
+
 ```
