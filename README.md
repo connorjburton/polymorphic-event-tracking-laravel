@@ -1,2 +1,2 @@
 # Polymorphic Event Tracking Laravel
-An example of how Polymorphic models can be used for expressive event tracking.
+An example of how Polymorphic relationships can be used for expressive event tracking.
