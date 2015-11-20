@@ -60,9 +60,8 @@ Will return
 
 **Add event types**
 
-```
 /database/seeds/EventTypesSeeder.php
-
+```
 class EventTypesSeeder extends Seeder
 {
     // Seed for command types
