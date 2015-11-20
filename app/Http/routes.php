@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
+	Route::post('videos/{id}/storeEvent', 'VideoController@storeEvent');
+	
+	Route::resource('events', 'Event\EventController', ['only' => ['index']]);
+});

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class EventTypesSeeder extends Seeder
 {
-    // Seed for command types ("name")
+    // Seed for command types
     private $command_types = array(
         'view'
     );
