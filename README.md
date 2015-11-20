@@ -41,13 +41,13 @@ request
 **Retrive event (can be any combination of variables)**
 
 ```
-  request
-    .get('/api/events')
-    .query({
-      user_id: 1,
-      type: 'view'
-    })
-    .end(function(err, resp) {});
+request
+  .get('/api/events')
+  .query({
+    user_id: 1,
+    type: 'view'
+  })
+  .end(function(err, resp) {});
 ```
 
 Will return
