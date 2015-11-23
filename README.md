@@ -10,6 +10,7 @@ This example makes an assumption that you have users, if you do not have users a
 ###Todo
 
 + Create a demo frontend to showcase functionality
++ Add the ability to filter by dates
 + Handle type checking intuitively
 
 ###Usage
