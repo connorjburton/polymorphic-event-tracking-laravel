@@ -7,12 +7,6 @@ This example makes an assumption that you have users, if you do not have users a
 
 **Please note, this has not been tested in a production environment and should only be used as a reference.**
 
-###Todo
-
-+ Create a demo frontend to showcase functionality
-+ Add the ability to filter by dates
-+ Handle type checking intuitively
-
 ###Usage
 
 **Store Event**
