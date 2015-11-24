@@ -23,7 +23,6 @@ request
   .send({
     user_id: 1,
     eventable_id: 23,
-    eventable_type: 'Video',
     type: 'view'
   })
   .end(function(err, resp) {});
@@ -33,7 +32,6 @@ request
   .send({
     user_id: 1,
     eventable_id: 52,
-    eventable_type: 'Image',
     type: 'view'
   })
   .end(function(err, resp) {});
