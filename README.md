@@ -7,7 +7,38 @@ This example makes an assumption that you have users, if you do not have users a
 
 **Please note, this has not been tested in a production environment and should only be used as a reference.**
 
-###Usage
+### Features
+
++ Event Queue
++ Event Trait
+
+### Storing Events
+
+Events can be stored in any file, as long as you include the EventTrait:
+
+```
+use App\Http\Controllers\Event\EventTrait;
+
+class example {
+  use EventTrait;
+}
+
+```
+
+And can be stored in the file as:
+
+```
+$model = Model::find($id);
+
+$options = Input::only(['user_id', 'eventable_id', 'type', 'data']);
+$options['eventable_type'] = 'Phase';
+
+$this->storeEvent($id, $options, function($event) use ($model) {
+    $model->events()->save($event);
+}, true);
+```
+
+### API Example
 
 **Store Event**
 
