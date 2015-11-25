@@ -39,9 +39,9 @@ $this->storeEvent($options, function($event) use ($video) {
 }, true);
 ```
 
-*A note about user_id, there is no validation on this ID other than it exists in the users table. This is a secruity vulnerability if you just leave it like that. It means anyone can create an event for anyone. However, if you leave user_id blank it will use Auth::user()->id instead.
+A note about user_id, there is no validation on this ID other than it exists in the users table. This is a secruity vulnerability if you just leave it like that. It means anyone can create an event for anyone. However, if you leave user_id blank it will use Auth::user()->id instead.
 
-TL:DR - If you are passing user_id, make sure the user storing the event is allowed to store the event for that user*
+TL:DR - If you are passing user_id, make sure the user storing the event is allowed to store the event for that user
 
 ### API Example
 
