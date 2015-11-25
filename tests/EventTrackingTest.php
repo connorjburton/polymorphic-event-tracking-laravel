@@ -9,7 +9,7 @@ use App\Http\Controllers\Event\EventTrait;
 
 class EventTracking extends TestCase
 {
-	use EventTrait;
+	use EventTrait, DatabaseTransactions;
 
     public function testStoreEventByJob()
     {
