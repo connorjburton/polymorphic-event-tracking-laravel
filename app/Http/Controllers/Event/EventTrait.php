@@ -32,7 +32,7 @@ trait EventTrait {
       }
       
       $event = new Event;
-      $event->user_id = $options['user_id'];
+      $event->user_id = (isset($options['user_id'])) ? $options['user_id'] : Auth::user()->id;
       $event->type_id = EventType::where('name', $options['type'])->firstOrFail()->id;
       $event->eventable_id = $options['eventable_id'];
       $event->eventable_type = $options['eventable_type'];

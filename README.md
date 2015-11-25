@@ -11,6 +11,7 @@ This example makes an assumption that you have users, if you do not have users a
 
 + Event Queue
 + Event Trait
++ Unit Tests
 
 ### Storing Events
 
@@ -24,7 +25,7 @@ class example {
 }
 ```
 
-The even can be stored from any file by running:
+The event can be stored from any file by running:
 
 ```
 $video = Video::find($id);
@@ -37,6 +38,10 @@ $this->storeEvent($options, function($event) use ($video) {
     $video->events()->save($event);
 }, true);
 ```
+
+*A note about user_id, there is no validation on this ID other than it exists in the users table. This is a secruity vulnerability if you just leave it like that. It means anyone can create an event for anyone. However, if you leave user_id blank it will use Auth::user()->id instead.
+
+TL:DR - If you are passing user_id, make sure the user storing the event is allowed to store the event for that user*
 
 ### API Example
 
