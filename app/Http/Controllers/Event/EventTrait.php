@@ -17,7 +17,7 @@ use Auth;
 trait EventTrait {
   use DispatchesJobs;
 
-	public function storeEvent($id = null, $options = null, $callback = null, $queue = null) {
+	public function storeEvent($options = null, $callback = null, $queue = null) {
       if($queue) {
           $this->queueEvent($id, $options, $callback);
           return false;
@@ -32,9 +32,9 @@ trait EventTrait {
       }
       
       $event = new Event;
-      $event->user_id = Auth::user()->id;
+      $event->user_id = $options['user_id'];
       $event->type_id = EventType::where('name', $options['type'])->firstOrFail()->id;
-      $event->eventable_id = $id;
+      $event->eventable_id = $options['eventable_id'];
       $event->eventable_type = $options['eventable_type'];
     
       $data = $options['data'];
@@ -48,10 +48,10 @@ trait EventTrait {
       $callback($event);
 	}
   
-  public function queueEvent($id, $options, $callback) {
+  public function queueEvent($options, $callback) {
       $serializer = new Serializer();
       
-      $job = (new StoreEvent($id, $options, $serializer->serialize($callback)))->onQueue('events');
+      $job = (new StoreEvent($options, $serializer->serialize($callback)))->onQueue('events');
     
       $this->dispatch($job);
   }

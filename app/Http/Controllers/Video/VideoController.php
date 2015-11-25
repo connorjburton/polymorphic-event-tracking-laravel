@@ -24,14 +24,15 @@ class VideoController extends Controller
 		}
 		
 		if (!$video = Video::where('id', $id)) {
-			return Restable::missing('Assignment not found or cannot be viewed by student')->render();
+			return Restable::missing('Video not found')->render();
 		}
 		
-		$options = Input::only(['user_id', 'eventable_id', 'type', 'data']);
-	        $options['eventable_type'] = 'Phase';
+		$options = Input::only(['type', 'data', 'user_id']);
+        $options['eventable_type'] = 'Video';
+        $options['eventable_id'] = $id;
 		
-	        $this->storeEvent($video->pluck('id'), $options, function($event) use ($video) {
-	            $video->events()->save($event);
-	        }, true);
+        $this->storeEvent($options, function($event) use ($video) {
+            $video->events()->save($event);
+        }, true);
 	}
 }

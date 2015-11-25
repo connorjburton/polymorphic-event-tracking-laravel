@@ -14,7 +14,7 @@ This example makes an assumption that you have users, if you do not have users a
 
 ### Storing Events
 
-Events can be stored in any file, as long as you include the EventTrait:
+As long as you include the EventTrait:
 
 ```
 use App\Http\Controllers\Event\EventTrait;
@@ -24,16 +24,17 @@ class example {
 }
 ```
 
-And can be stored in the file as:
+The even can be stored from any file by running:
 
 ```
-$model = Model::find($id);
+$video = Video::find($id);
 
-$options = Input::only(['user_id', 'eventable_id', 'type', 'data']);
-$options['eventable_type'] = 'Phase';
+$options = Input::only(['type', 'data', 'user_id']);
+$options['eventable_type'] = 'Video';
+$options['eventable_id'] = $id;
 
-$this->storeEvent($id, $options, function($event) use ($model) {
-    $model->events()->save($event);
+$this->storeEvent($options, function($event) use ($video) {
+    $video->events()->save($event);
 }, true);
 ```
 
@@ -46,7 +47,6 @@ request
   .post('/api/video/storeEvent')
   .send({
     user_id: 1,
-    eventable_id: 23,
     type: 'view'
   })
   .end(function(err, resp) {});
@@ -55,7 +55,6 @@ request
   .post('/api/image/storeEvent')
   .send({
     user_id: 1,
-    eventable_id: 52,
     type: 'view'
   })
   .end(function(err, resp) {});

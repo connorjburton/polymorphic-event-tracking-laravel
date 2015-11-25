@@ -13,7 +13,6 @@ class StoreEvent extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels, EventTrait;
 
-    protected $id;
     protected $options;
     protected $callback;
 
@@ -22,9 +21,8 @@ class StoreEvent extends Job implements SelfHandling, ShouldQueue
      *
      * @return void
      */
-    public function __construct($id, $options, $callback)
+    public function __construct($options, $callback)
     {
-        $this->id = $id;
         $this->options = $options;
         $this->callback = $callback;
     }
@@ -36,6 +34,6 @@ class StoreEvent extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        $this->storeEvent($this->id, $this->options, $this->callback);
+        $this->storeEvent($this->options, $this->callback);
     }
 }
