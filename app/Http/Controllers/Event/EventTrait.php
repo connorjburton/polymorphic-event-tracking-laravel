@@ -24,7 +24,8 @@ trait EventTrait {
       }
     
       $validator = Validator::make($options, [
-          'type' => 'required|string|exists:event_types,name'
+          'type' => 'required|string|exists:event_types,name',
+          'user_id' => 'optional|numberic|exists:users,id'
       ]);
       
       if ($validator->fails()) {
