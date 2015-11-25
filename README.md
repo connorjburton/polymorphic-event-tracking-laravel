@@ -24,7 +24,7 @@ class example {
 }
 ```
 
-The even can be stored from any file by running:
+The event can be stored from any file by running:
 
 ```
 $video = Video::find($id);
