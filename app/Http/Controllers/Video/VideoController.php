@@ -7,11 +7,12 @@ use Auth;
 
 use Teepluss\Restable\Facades\Restable as Restable;
 
-use App\Models\Event;
-use App\Models\EventType;
+use App\Http\Controllers\Event\EventTrait;
 
 class VideoController extends Controller
 {
+	use EventTrait;
+	
 	public function storeEvent($id)
 	{
 		$validator = Validator::make(Input::all(), [
@@ -26,17 +27,11 @@ class VideoController extends Controller
 			return Restable::missing('Assignment not found or cannot be viewed by student')->render();
 		}
 		
-		$event = new Event;
-		$event->user_id = Auth::user()->id;
-		$event->type_id = EventType::where('name', Input::get('type'))->firstOrFail()->id;
-		$event->eventable_id = $id;
-		$event->eventable_type = 'Video';
+		$options = Input::only(['user_id', 'eventable_id', 'type', 'data']);
+	        $options['eventable_type'] = 'Phase';
 		
-		$data = Input::get('data');
-		if($data) {
-			$event->data = json_encode(Input::get('data'));
-		}
-		
-		$video->events()->save($event);
+	        $this->storeEvent($video->pluck('id'), $options, function($event) use ($video) {
+	            $video->events()->save($event);
+	        }, true);
 	}
 }
