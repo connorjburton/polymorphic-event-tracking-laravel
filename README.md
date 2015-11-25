@@ -22,7 +22,6 @@ use App\Http\Controllers\Event\EventTrait;
 class example {
   use EventTrait;
 }
-
 ```
 
 And can be stored in the file as:
