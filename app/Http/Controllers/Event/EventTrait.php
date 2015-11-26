@@ -19,13 +19,15 @@ trait EventTrait {
 
 	public function storeEvent($options = null, $callback = null, $queue = null) {
       if($queue) {
-          $this->queueEvent($id, $options, $callback);
+          $this->queueEvent($options, $callback);
           return false;
       }
     
       $validator = Validator::make($options, [
           'type' => 'required|string|exists:event_types,name',
-          'user_id' => 'optional|numberic|exists:users,id'
+          'user_id' => 'optional|numeric|exists:users,id',
+          'eventable_id' => 'required|numeric',
+          'eventable_type' => 'required|string'
       ]);
       
       if ($validator->fails()) {
