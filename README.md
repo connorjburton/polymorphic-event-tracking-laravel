@@ -17,7 +17,7 @@ This example makes an assumption that you have users, if you do not have users a
 
 As long as you include the EventTrait:
 
-```
+```php
 use App\Http\Controllers\Event\EventTrait;
 
 class example {
@@ -27,7 +27,7 @@ class example {
 
 The event can be stored from any file by running:
 
-```
+```php
 $video = Video::find($id);
 
 $options = Input::only(['type', 'data', 'user_id']);
@@ -47,7 +47,7 @@ TL:DR - If you are passing user_id, make sure the user storing the event is allo
 
 **Store Event**
 
-```
+```javascript
 request
   .post('/api/video/storeEvent')
   .send({
@@ -67,7 +67,7 @@ request
 
 **Retrive event (can be any combination of variables)**
 
-```
+```javascript
 request
   .get('/api/events')
   .query({
@@ -79,7 +79,7 @@ request
 
 Will return
 
-```
+```json
 [{eventable_id: 23 ...], [eventable_id: 52 ...]}
 ```
 
@@ -88,7 +88,7 @@ Will return
 **Add event types**
 
 /database/seeds/EventTypesSeeder.php
-```
+```php
 class EventTypesSeeder extends Seeder
 {
     // Seed for command types
