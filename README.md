@@ -79,7 +79,7 @@ request
 
 Will return
 
-```json
+```
 [{eventable_id: 23 ...], [eventable_id: 52 ...]}
 ```
 
